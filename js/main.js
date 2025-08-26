@@ -52,6 +52,15 @@ $(document).ready(function() {
    showSplash();
 });
 
+// Lock the page while playing: stops double-tap scroll/zoom and drag
+function lockTouch(e){
+  if (currentstate === states.GameScreen) e.preventDefault();
+}
+window.addEventListener('touchstart', lockTouch, { passive: false });
+window.addEventListener('touchmove',  lockTouch, { passive: false });
+window.addEventListener('dblclick',   e => e.preventDefault(), { passive: false }); // iOS 17+
+
+
 function getCookie(cname)
 {
    var name = cname + "=";
