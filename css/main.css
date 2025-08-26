@@ -477,3 +477,26 @@ Screen - Game
   text-align: center;
   margin-top: 2px;
 }
+
+/* Stäng av dubbel-tap-zoom och markering i spel-ytan */
+html, body, #gamecontainer, #gamescreen, #flyarea {
+  touch-action: manipulation;          /* säger åt browsern att inte vänta på dubbel-tap */
+  -ms-touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;         /* ingen “kopiera”/callout */
+}
+
+/* Inputs ska kunna markeras normalt i formuläret */
+#player-form, #player-form * {
+  -webkit-user-select: auto;
+  user-select: auto;
+  touch-action: manipulation;
+}
+
+/* Knapp-feedback utan highlight */
+button, .btn, #replay {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
