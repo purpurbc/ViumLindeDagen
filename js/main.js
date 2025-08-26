@@ -100,8 +100,31 @@ function showSplash()
    //fade in the splash
    $("#splash").transition({ opacity: 1 }, 2000, 'ease');
 }
+let rafId = null;
+function frame(){
+  // kör bara spelet när vi faktiskt är i GameScreen
+  if (currentstate !== states.GameScreen) return;
+  gameloop();
+  rafId = requestAnimationFrame(frame);
+}
 
-function startGame()
+function startGame(){
+  currentstate = states.GameScreen;
+
+  $("#splash").stop().transition({ opacity: 0 }, 500, 'ease');
+  setBigScore();
+
+  // säkerställ EN aktiv rAF-loop
+  if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+
+  // pipes kan ligga kvar på setInterval som tidigare
+  loopPipeloop = setInterval(updatePipes, 1400);
+
+  rafId = requestAnimationFrame(frame);
+  playerJump();
+}
+
+/* function startGame()
 {
    currentstate = states.GameScreen;
 
@@ -126,7 +149,7 @@ function startGame()
 
    //jump from the start!
    playerJump();
-}
+} */
 
 function updatePlayer(player)
 {
@@ -333,6 +356,13 @@ function setMedal()
 
 function playerDead()
 {
+
+   // byt state först – så frame() slutar av sig själv
+   currentstate = states.ScoreScreen;
+
+   // stoppa loopar exakt en gång
+   if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+   if (loopPipeloop) { clearInterval(loopPipeloop); loopPipeloop = null; }
    //stop animating everything!
    $(".animated").css('animation-play-state', 'paused');
    $(".animated").css('-webkit-animation-play-state', 'paused');
@@ -344,7 +374,9 @@ function playerDead()
    $("#player").transition({ y: movey + 'px', rotate: 90}, 1000, 'easeInOutCubic');
 
    //it's time to change states. as of now we're considered ScoreScreen to disable left click/flying
-   currentstate = states.ScoreScreen;
+   //currentstate = states.ScoreScreen;
+
+   
 
    //destroy our gameloops
    clearInterval(loopGameloop);
