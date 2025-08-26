@@ -115,7 +115,7 @@ let lastFrame = 0;
 function frame(timestamp){
   // kör bara spelet när vi faktiskt är i GameScreen
   if (currentstate !== states.GameScreen) return;
-  if (timestamp - lastFrame > 5) {
+  if (timestamp - lastFrame > 1) {
     gameloop();
     lastFrame = timestamp;
   }
