@@ -126,6 +126,9 @@
 
          // när spelet är slut, kalla denna (lägg in i main.js gameOver-funktionen)
          function logScore(finalScore) {
+            if(finalScore == 0 ) {
+               return;
+            }
             const name = document.getElementById("playerName").value;
             const phone = document.getElementById("playerPhone").value;
 
