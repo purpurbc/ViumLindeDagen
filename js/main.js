@@ -101,12 +101,19 @@ function showSplash()
    $("#splash").transition({ opacity: 1 }, 2000, 'ease');
 }
 let rafId = null;
-function frame(){
+let lastFrame = 0;
+
+
+function frame(timestamp){
   // kör bara spelet när vi faktiskt är i GameScreen
   if (currentstate !== states.GameScreen) return;
-  gameloop();
+  if (timestamp - lastFrame > 20) {
+    gameloop();
+    lastFrame = timestamp;
+  }
   rafId = requestAnimationFrame(frame);
 }
+
 
 function startGame(){
   currentstate = states.GameScreen;
