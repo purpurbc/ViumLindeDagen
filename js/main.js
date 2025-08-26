@@ -106,7 +106,7 @@ let lastFrame = 0;
 function frame(timestamp){
   // kör bara spelet när vi faktiskt är i GameScreen
   if (currentstate !== states.GameScreen) return;
-  if (timestamp - lastFrame > 33) {
+  if (timestamp - lastFrame > 5) {
     gameloop();
     lastFrame = timestamp;
   }
@@ -431,16 +431,16 @@ function showScore()
    var wonmedal = setMedal();
 
    //SWOOSH!
-   soundSwoosh.stop();
-   soundSwoosh.play();
+   /* soundSwoosh.stop();
+   soundSwoosh.play(); */
 
    //show the scoreboard
    $("#scoreboard").css({ y: '40px', opacity: 0 }); //move it down so we can slide it up
    $("#replay").css({ y: '40px', opacity: 0 });
    $("#scoreboard").transition({ y: '0px', opacity: 1}, 600, 'ease', function() {
       //When the animation is done, animate in the replay button and SWOOSH!
-      soundSwoosh.stop();
-      soundSwoosh.play();
+      /* soundSwoosh.stop();
+      soundSwoosh.play(); */
       $("#replay").transition({ y: '0px', opacity: 1}, 600, 'ease');
 
       //also animate in the MEDAL! WOO!
@@ -466,8 +466,8 @@ $("#replay").click(function() {
    else
       replayclickable = false;
    //SWOOSH!
-   soundSwoosh.stop();
-   soundSwoosh.play();
+   /* soundSwoosh.stop();
+   soundSwoosh.play(); */
 
    //fade out the scoreboard
    $("#scoreboard").transition({ y: '-40px', opacity: 0}, 1000, 'ease', function() {
