@@ -60,6 +60,10 @@ window.addEventListener('touchstart', lockTouch, { passive: false });
 window.addEventListener('touchmove',  lockTouch, { passive: false });
 window.addEventListener('dblclick',   e => e.preventDefault(), { passive: false }); // iOS 17+
 
+// Remove any pipe as soon as its CSS animation completes (for transform-animated pipes)
+$(document).on('animationend webkitAnimationEnd oAnimationEnd', '.pipe', function () {
+  $(this).remove();
+});
 
 function getCookie(cname)
 {
