@@ -317,16 +317,14 @@ Screen - Game
    animation: animBird 300ms steps(4) infinite;
 }
 
-.pipe
-{
-   position: absolute;
-   left: -100px;
-   width: 52px;
-   height: 100%;
-   z-index: 10;
-
-   -webkit-animation: animPipe 7500ms linear;
-   animation: animPipe 7500ms linear;
+.pipe{
+  position: absolute;
+  /* left: -100px;  <-- TA BORT den här raden */
+  width: 52px;
+  height: 100%;
+  z-index: 10;
+  animation: animPipe 7500ms linear;
+  will-change: transform; /* hint till GPU */
 }
 
 .pipe_upper

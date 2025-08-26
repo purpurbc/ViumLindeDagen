@@ -86,8 +86,8 @@ function showSplash()
    $("#player").css({ y: 0, x: 0 });
    updatePlayer($("#player"));
 
-   soundSwoosh.stop();
-   soundSwoosh.play();
+   /* soundSwoosh.stop();
+   soundSwoosh.play(); */
 
    //clear out all the pipes if there are any
    $(".pipe").remove();
@@ -111,7 +111,8 @@ function frame(){
 function startGame(){
   currentstate = states.GameScreen;
 
-  $("#splash").stop().transition({ opacity: 0 }, 500, 'ease');
+  /* $("#splash").stop().transition({ opacity: 0 }, 500, 'ease'); */
+  
   setBigScore();
 
   // säkerställ EN aktiv rAF-loop
@@ -476,8 +477,8 @@ function playerScore()
 {
    score += 1;
    //play score sound
-   soundScore.stop();
-   soundScore.play();
+   /* soundScore.stop();
+   soundScore.play(); */
    setBigScore();
 }
 
