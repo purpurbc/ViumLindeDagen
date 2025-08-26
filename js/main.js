@@ -103,11 +103,10 @@ function showSplash()
 let rafId = null;
 let lastFrame = 0;
 
-
 function frame(timestamp){
   // kör bara spelet när vi faktiskt är i GameScreen
   if (currentstate !== states.GameScreen) return;
-  if (timestamp - lastFrame > 20) {
+  if (timestamp - lastFrame > 33) {
     gameloop();
     lastFrame = timestamp;
   }
@@ -118,7 +117,7 @@ function frame(timestamp){
 function startGame(){
   currentstate = states.GameScreen;
 
-  /* $("#splash").stop().transition({ opacity: 0 }, 500, 'ease'); */
+  $("#splash").stop().transition({ opacity: 0 }, 500, 'ease');
   
   setBigScore();
 
